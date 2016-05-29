@@ -18,4 +18,18 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
         ]);
     }
+
+    /**
+     * @Route("/pp", name="hello")
+     */
+    public function dime2Action()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $eventUserRepo = $em->getRepository("AppBundle:EventUsuario");
+        $eventUsers = $eventUserRepo ->findAll();
+        foreach($eventUsers as $eventUser){
+            echo $eventUser->getNombre()."<br/>";
+        }
+        return $this->render('default/prueba.html.twig');
+    }
 }

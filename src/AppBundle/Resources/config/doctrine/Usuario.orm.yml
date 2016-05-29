@@ -1,0 +1,56 @@
+AppBundle\Entity\Usuario:
+    type: entity
+    table: usuarios
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nick:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        apellidos:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        correo:
+            type: string
+            nullable: false
+            length: 120
+            options:
+                fixed: false
+        clave:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        rol:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        imagen:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

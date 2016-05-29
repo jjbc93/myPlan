@@ -1,0 +1,41 @@
+AppBundle\Entity\EventCategoria:
+    type: entity
+    table: event_categoria
+    indexes:
+        id_evento:
+            columns:
+                - id_evento
+        id_categoria:
+            columns:
+                - id_categoria
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        idEvento:
+            targetEntity: Evento
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_evento:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idCategoria:
+            targetEntity: Categoria
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_categoria:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
