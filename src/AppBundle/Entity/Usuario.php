@@ -1,11 +1,11 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Usuario
  */
-class Usuario
+class Usuario implements UserInterface
 {
     /**
      * @var integer
@@ -46,7 +46,29 @@ class Usuario
      * @var string
      */
     private $imagen;
-
+        
+    //AUTH
+    
+    public function getUserName()
+    {
+        return $this->correo;
+    }
+    
+    public function getSalt()
+    {
+        return null;
+    }
+    
+    public function getRoles()
+    {
+        return array($this->getRol());
+    }
+    
+    public function eraseCredentials()
+    {
+        
+    }
+    // END AUTH
 
     /**
      * Get id
@@ -57,7 +79,7 @@ class Usuario
     {
         return $this->id;
     }
-
+    
     /**
      * Set nick
      *

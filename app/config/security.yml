@@ -1,13 +1,16 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
-
+    encoders:
+        AppBundle\Entity\Usuario:
+            algorithm: bcrypt
+            cost: 4
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         our_db_provider:
             entity:
                 class: AppBundle:Usuario
-                property: nick
+                property: correo
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
