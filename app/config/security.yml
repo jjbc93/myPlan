@@ -22,11 +22,11 @@ security:
             anonymous: ~
             provider: our_db_provider
             form_login:
-                login_path: /login
-                check_path: /loginCheck
+                login_path: login
+                check_path: login
             logout:
                 path: /logout
-                target: /login
+                target: /mostrar
             # activate different ways to authenticate
 
             # http_basic: ~

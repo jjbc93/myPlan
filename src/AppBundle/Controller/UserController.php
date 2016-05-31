@@ -7,10 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
-{
+{   
     /**
-     * @Route("/login", name="register")
+     * @Route("/login", name="login")
      */
+    
     public function loginAction(Request $request)
     {
         $authenticationUtils = $this->get("security.authentication_utils");
@@ -18,8 +19,9 @@ class UserController extends Controller
         $lastUserName =$authenticationUtils->getLastUsername();
         
         return $this->render('default/user.html.twig',array(
-            "error" =>$error,
+            "error" => $error,
             "lastUserName" => $lastUserName
+            
         ));
     }
 }

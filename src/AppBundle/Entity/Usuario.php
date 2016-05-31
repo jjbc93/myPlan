@@ -68,6 +68,11 @@ class Usuario implements UserInterface
     {
         
     }
+    
+    public function getPassword()
+    {
+        return $this->clave;
+    }
     // END AUTH
 
     /**

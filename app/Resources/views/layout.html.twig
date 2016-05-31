@@ -51,9 +51,15 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Login</a></li>
-                                    <li role="separator" class="divider"></li>
+                                    <!--<li><a href="#">Login</a></li>-->
+                                    <!--<li role="separator" class="divider"></li>-->
                                     <li><a href="#">Ayuda</a></li>
+                                    {% if app.user !=null%}
+                                            <li><a href="{{path('logout')}}">Salir</a></li>
+                                        {%else%}
+                                            <li><a href="{{path('login')}}">Login</a></li>
+                                    {% endif %}
+                                    <li role="separator" class="divider"></li>
                                 </ul>
                             </li>
                         </ul>
@@ -62,10 +68,10 @@
             </nav>
         </header>
         <section id="content">
-            {% block content %} content Default {% endblock %}
+            {% block content %} Content default {% endblock %}
         </section>
         <footer>
-            Aplicacion myPlan desarrollada por Juanjo Bernabe Casas
+           <hr/> Aplicacion myPlan desarrollada por Juanjo Bernabe Casas &copy;
         </footer>
     </body>
 </html>
