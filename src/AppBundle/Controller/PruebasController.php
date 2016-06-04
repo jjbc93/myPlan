@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PruebasController extends Controller
 {
     /**
-     * @Route("/mostrar", name="mostrar")
+     * @Route("mostrar", name="mostrar")
      */
     public function mostrarDatosAction()
     {/*

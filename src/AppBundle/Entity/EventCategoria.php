@@ -40,7 +40,7 @@ class EventCategoria
      *
      * @return EventCategoria
      */
-    public function setIdEvento(\AppBundle\Entity\Eventos $idEvento = null)
+    public function setIdEvento(\AppBundle\Entity\Evento $idEvento = null)
     {
         $this->idEvento = $idEvento;
 

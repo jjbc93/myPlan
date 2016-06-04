@@ -40,7 +40,7 @@ class EventUsuario
      *
      * @return EventUsuario
      */
-    public function setIdEvento(\AppBundle\Entity\Eventos $idEvento = null)
+    public function setIdEvento(\AppBundle\Entity\Evento $idEvento = null)
     {
         $this->idEvento = $idEvento;
 
@@ -64,7 +64,7 @@ class EventUsuario
      *
      * @return EventUsuario
      */
-    public function setIdUsuario(\AppBundle\Entity\Usuarios $idUsuario = null)
+    public function setIdUsuario(\AppBundle\Entity\Usuario $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 
