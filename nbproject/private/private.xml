@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/wamp/www/myplan/app/Resources/views/default/user.html.twig</file>
+            <file>file:/C:/wamp/www/myplan/src/AppBundle/Controller/UserController.php</file>
+            <file>file:/C:/wamp/www/myplan/app/Resources/views/default/llanto.twig.html.twig</file>
+            <file>file:/C:/wamp/www/myplan/src/AppBundle/Entity/Evento.php</file>
+            <file>file:/C:/wamp/www/myplan/src/AppBundle/Entity/Usuario.php</file>
+            <file>file:/C:/wamp/www/myplan/src/AppBundle/Form/UsuarioType.php</file>
+        </group>
     </open-files>
 </project-private>
