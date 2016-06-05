@@ -38,7 +38,7 @@ class UsuarioType extends AbstractType
             "class" =>"form-password form-control",
             )))
             ->add('enviar',SubmitType::class, array("attr" =>array(
-            "class" =>"form-submit btn btn-success")))
+            "class" =>"form-submit btn btn-success miSubmit")))
             /*->add('rol')
             ->add('imagen')*/
         ;

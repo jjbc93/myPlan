@@ -36,13 +36,13 @@ class UserController extends Controller
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $userRepo = $em->getRepository("AppBundle:Usuario");
-                $user = $userRepo->findOneBy(array("correo"=>$form->get("correo")->getData()));
-                if(count($user)==0){
-                    $user = new Usuario();
-                    /*$user->setNick($form->get("nick")->getData());
+                $userBusqueda = $userRepo->findOneBy(array("correo"=>$form->get("correo")->getData()));
+                if(count($userBusqueda)==0){
+                    /*$user = new Usuario();
+                    $user->setNick($form->get("nick")->getData());
                     $user->setNombre($form->get("nombre")->getData());
-                    $user->setApellidos($form->get("apellidos")->getData());
-                    $user->setCorreo($form->get("correo")->getData());*/
+                    $user->setApellidos($form->get("apellidos")->getData());*/
+                    $user->setCorreo($form->get("correo")->getData());
                     $user->setRol("ROLE_USER");
                     /*$user->setImagen(null);*/
                     //Cifrar la password del usuario
@@ -67,6 +67,7 @@ class UserController extends Controller
 
             }
             $this->session->getFlashBag()->add("status",$status);
+            /*$this->session->getFlashBag()->add("error",$error);*/
         }
         return $this->render('default/user.html.twig',array(
             "error" => $error,

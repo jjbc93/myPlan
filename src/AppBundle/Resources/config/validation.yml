@@ -1,0 +1,8 @@
+AppBundle\Entity\Evento:
+    properties:
+        nombre:
+            - NotBlank: {message: "El campo no puede estar vacio"}
+            - Length:
+                min: 2
+                minMessage: "El evento debe tener mas de dos caracteres"
+        
