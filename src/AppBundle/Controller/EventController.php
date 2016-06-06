@@ -18,7 +18,7 @@ class EventController extends Controller
     }
     
     /**
-     * @Route("/eventList", name="eventList")
+     * @Route("/event/list", name="eventList")
     */ 
     public function indexEventAction()
     {   
@@ -26,7 +26,7 @@ class EventController extends Controller
          $eventRepo = $em->getRepository("AppBundle:Evento");
          $events = $eventRepo->findAll();
         
-         return $this->render('default/eventoList.html.twig',array(
+         return $this->render('event/eventList.html.twig',array(
             "events" =>$events
         ));
     }
@@ -62,7 +62,7 @@ class EventController extends Controller
         
        
         
-        return $this->render('default/eventoAdd.html.twig',array(
+        return $this->render('event/eventAdd.html.twig',array(
             "form" => $form->createView()
         ));
     }

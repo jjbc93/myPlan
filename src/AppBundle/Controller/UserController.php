@@ -69,7 +69,7 @@ class UserController extends Controller
             $this->session->getFlashBag()->add("status",$status);
             /*$this->session->getFlashBag()->add("error",$error);*/
         }
-        return $this->render('default/user.html.twig',array(
+        return $this->render('user/user.html.twig',array(
             "error" => $error,
             "lastUserName" => $lastUserName,
             "form" => $form->createView(),
