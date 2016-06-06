@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+    {% block content %}
+       <div class="col-lg-6">
+       <h2>Listado de eventos</h2>
+       {%for message in app.session.flashbag().get('status')%}
+       <div class="alert alert-success">{{message}}</div>
+   {% endfor %}
+       <table class="table table-bordered">
+        {% for event in events %}
+           <tr>
+               <td>{{event.nombre}}</td>
+               <td>{{event.descripcion}}</td>
+               <td>{{event.horario}}</td>
+               <td>{{event.fecha}}</td>
+               <td>{{event.organizadores}}</td>
+               <td>{{event.lugar}}</td>
+               <td>{{event.direccion}}</td>
+               <td><a class="btn btn-danger" href="{{path('deleteEvent',{'id':event.id})}}">Eliminar</a></td>
+           </tr>
+           {%endfor%}
+        </table>
+        <a class="btn btn-info"href="{{path('addEvent')}}">Añadir Evento</a>
+       </div>
+       <div class="clearfix"></div>
+    
+{%endblock%}

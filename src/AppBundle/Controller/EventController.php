@@ -18,9 +18,23 @@ class EventController extends Controller
     }
     
     /**
-     * @Route("/eventos/add", name="add")
+     * @Route("/eventList", name="eventList")
     */ 
-    public function addAction(Request $request)
+    public function indexEventAction()
+    {   
+         $em = $this->getDoctrine()->getManager();
+         $eventRepo = $em->getRepository("AppBundle:Evento");
+         $events = $eventRepo->findAll();
+        
+         return $this->render('default/eventoList.html.twig',array(
+            "events" =>$events
+        ));
+    }
+    
+    /**
+     * @Route("/event/add", name="addEvent")
+    */ 
+    public function addEventAction(Request $request)
     {
         //Generar Formulario de eventos
         $evento = new Evento();
@@ -43,12 +57,25 @@ class EventController extends Controller
                 $status = "No se ha podido crear el evento revise los campos";
             }
              $this->session->getFlashbag()->add("status",$status);
+             return $this->redirectToRoute("eventList");
         }
         
        
         
-        return $this->render('default/evento.html.twig',array(
+        return $this->render('default/eventoAdd.html.twig',array(
             "form" => $form->createView()
         ));
+    }
+    
+    /**
+     * @Route("/event/delete/{id}", name="deleteEvent")
+    */ 
+    public function deleteEventAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $eventRepo = $em->getRepository("AppBundle:Evento");
+        $event = $eventRepo->find($id);
+        $em->remove($event);
+        $em->flush();
+        return $this->redirectToRoute("eventList");
     }
 }

@@ -6,8 +6,10 @@
             <file>file:/C:/wamp/www/myplan/app/Resources/views/default/user.html.twig</file>
             <file>file:/C:/wamp/www/myplan/src/AppBundle/Controller/UserController.php</file>
             <file>file:/C:/wamp/www/myplan/src/AppBundle/Entity/Evento.php</file>
+            <file>file:/C:/wamp/www/myplan/src/AppBundle/Controller/EventController.php</file>
             <file>file:/C:/wamp/www/myplan/src/AppBundle/Entity/Usuario.php</file>
             <file>file:/C:/wamp/www/myplan/src/AppBundle/Form/UsuarioType.php</file>
+            <file>file:/C:/wamp/www/myplan/src/AppBundle/Form/EventoType.php</file>
         </group>
     </open-files>
 </project-private>
