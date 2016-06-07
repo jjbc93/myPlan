@@ -40,7 +40,6 @@ class EventController extends Controller
         //Generar Formulario de eventos
         $evento = new Evento();
         $form = $this->createForm(EventoType::class,$evento);
-
         $form->handleRequest($request);
         if($form->isSubmitted()){
             if($form->isValid()){

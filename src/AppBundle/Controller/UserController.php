@@ -43,7 +43,7 @@ class UserController extends Controller
                     $user->setNombre($form->get("nombre")->getData());
                     $user->setApellidos($form->get("apellidos")->getData());*/
                     $user->setCorreo($form->get("correo")->getData());
-                    $user->setRol("ROLE_USER");
+                    $user->setRole("ROLE_USER");
                     /*$user->setImagen(null);*/
                     //Cifrar la password del usuario
                     $factory = $this->get("security.encoder_factory");

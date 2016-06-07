@@ -2,10 +2,6 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-rutas_bundle:
-    resource: "@AppBundle/Resources/config/routing.yml"
-    prefix: /
-
 logout:
     path: /logout
 
