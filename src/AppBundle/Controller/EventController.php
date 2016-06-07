@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use AppBundle\Entity\Evento;
+use AppBundle\Entity\EventUsuario;
 use AppBundle\Form\EventoType;
 
 class EventController extends Controller
@@ -16,21 +17,21 @@ class EventController extends Controller
     public function __construct(){
         $this->session = new Session();
     }
-    
+
     /**
      * @Route("/event/list", name="eventList")
     */ 
     public function indexEventAction()
     {   
-         $em = $this->getDoctrine()->getManager();
-         $eventRepo = $em->getRepository("AppBundle:Evento");
-         $events = $eventRepo->findAll();
-        
-         return $this->render('event/eventList.html.twig',array(
+        $em = $this->getDoctrine()->getManager();
+        $eventRepo = $em->getRepository("AppBundle:Evento");
+        $events = $eventRepo->findAll();
+
+        return $this->render('event/eventList.html.twig',array(
             "events" =>$events
         ));
     }
-    
+
     /**
      * @Route("/event/add", name="addEvent")
     */ 
@@ -39,7 +40,7 @@ class EventController extends Controller
         //Generar Formulario de eventos
         $evento = new Evento();
         $form = $this->createForm(EventoType::class,$evento);
-        
+
         $form->handleRequest($request);
         if($form->isSubmitted()){
             if($form->isValid()){
@@ -51,22 +52,22 @@ class EventController extends Controller
                 }else{
                     $status = "No se ha podido crear el evento revise los campos";
                 }
-                
+
                 $status = "Los clientes ya pueden disfrutar de un nuevo evento";
             }else{
                 $status = "No se ha podido crear el evento revise los campos";
             }
-             $this->session->getFlashbag()->add("status",$status);
-             return $this->redirectToRoute("eventList");
+            $this->session->getFlashbag()->add("status",$status);
+            return $this->redirectToRoute("eventList");
         }
-        
-       
-        
+
+
+
         return $this->render('event/eventAdd.html.twig',array(
             "form" => $form->createView()
         ));
     }
-    
+
     /**
      * @Route("/event/delete/{id}", name="deleteEvent")
     */ 
@@ -76,6 +77,7 @@ class EventController extends Controller
         $event = $eventRepo->find($id);
         $em->remove($event);
         $em->flush();
+        
         return $this->redirectToRoute("eventList");
     }
 }

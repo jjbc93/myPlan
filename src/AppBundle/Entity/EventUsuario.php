@@ -13,12 +13,12 @@ class EventUsuario
     private $id;
 
     /**
-     * @var \AppBundle\Entity\Eventos
+     * @var \AppBundle\Entity\Evento
      */
     private $idEvento;
 
     /**
-     * @var \AppBundle\Entity\Usuarios
+     * @var \AppBundle\Entity\Usuario
      */
     private $idUsuario;
 
@@ -36,7 +36,7 @@ class EventUsuario
     /**
      * Set idEvento
      *
-     * @param \AppBundle\Entity\Eventos $idEvento
+     * @param \AppBundle\Entity\Evento $idEvento
      *
      * @return EventUsuario
      */
@@ -50,7 +50,7 @@ class EventUsuario
     /**
      * Get idEvento
      *
-     * @return \AppBundle\Entity\Eventos
+     * @return \AppBundle\Entity\Evento
      */
     public function getIdEvento()
     {
@@ -60,7 +60,7 @@ class EventUsuario
     /**
      * Set idUsuario
      *
-     * @param \AppBundle\Entity\Usuarios $idUsuario
+     * @param \AppBundle\Entity\Usuario $idUsuario
      *
      * @return EventUsuario
      */
@@ -74,7 +74,7 @@ class EventUsuario
     /**
      * Get idUsuario
      *
-     * @return \AppBundle\Entity\Usuarios
+     * @return \AppBundle\Entity\Usuario
      */
     public function getIdUsuario()
     {
