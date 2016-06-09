@@ -4,10 +4,11 @@
        <h2>Listado de eventos</h2>
        {%for message in app.session.flashbag().get('status')%}
        <div class="alert alert-success">{{message}}</div>
-   {% endfor %}
+       
+       {% endfor %}
        <table class="table table-bordered">
         {% for event in events %}
-           <tr>
+             <tr>
                <td>{{event.nombre}}</td>
                <td>{{event.descripcion}}</td>
                <td>{{event.horario}}</td>
@@ -15,6 +16,12 @@
                <td>{{event.patrocinadores}}</td>
                <td>{{event.lugar}}</td>
                <td>{{event.direccion}}</td>
+               <td>              
+              {%for ct in event.categorias%}
+               {{ct.descripcion}}
+                   <br/>
+            {%endfor%}
+              </td>
                <td><a class="btn btn-danger" href="{{path('deleteEvent',{'id':event.id})}}">Eliminar</a></td>
            </tr>
            {%endfor%}

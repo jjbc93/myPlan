@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use AppBundle\Entity\Evento;
+use AppBundle\Entity\Categoria;
 use AppBundle\Entity\EventUsuario;
 use AppBundle\Form\EventoType;
 
@@ -44,6 +45,11 @@ class EventController extends Controller
         if($form->isSubmitted()){
             if($form->isValid()){
                 $em = $this->getDoctrine()->getManager();
+                $eventRepo = $em->getRepository("AppBundle:Evento");
+                /*foreach($evento->getCategorias() as $categoria){
+                    var_dump($categoria);
+                    $evento->addCategoria($categoria);
+                }*/
                 $em->persist($evento);
                 $flush = $em->flush();
                 if($flush==null){
