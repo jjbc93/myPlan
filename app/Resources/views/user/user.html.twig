@@ -35,8 +35,8 @@
    <h2>Nuevos Usuarios</h2>
    <hr/>
    {%for message in app.session.flashbag().get('status')%}
-       <div class="alert alert-success">{{message}}</div>
-   {% endfor %}
+       <div class="alert alert-info">{{message}}</div>
+   {%endfor%}
     {{form_start(form,{'action':'','method':'POST'})}}
     {{form_end(form)}}
     

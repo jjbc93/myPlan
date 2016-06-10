@@ -26,9 +26,27 @@ class EventController extends Controller
     {   
         $em = $this->getDoctrine()->getManager();
         $eventRepo = $em->getRepository("AppBundle:Evento");
-        $events = $eventRepo->findAll();
-
+        $user = $this->getUser();
+        if(!$user){
+            $events = $eventRepo->findAll();
+        }else{
+            $events  = $eventRepo->findByNotInUser($user->getId());
+        }
         return $this->render('event/eventDefault.html.twig',array(
+            "events" =>$events
+        ));
+    }
+    
+    /**
+     * @Route("/event/user", name="userEvent")
+    */ 
+    public function userEventListAction()
+    {   
+        $em = $this->getDoctrine()->getManager();
+        $eventRepo = $em->getRepository("AppBundle:Evento");
+        $user = $this->getUser();
+        $events = $user->getEventos();
+        return $this->render('event/eventList.html.twig',array(
             "events" =>$events
         ));
     }
@@ -94,6 +112,11 @@ class EventController extends Controller
        $eventRepo = $em->getRepository("AppBundle:Evento");
        $event = $eventRepo->find($id);
        $user = $this->getUser();
+        if($user==null){
+            $status = "Debes estar registrado para disfrutar de nuestros eventos";
+            $this->session->getFlashbag()->add("status",$status);
+            return $this->redirectToRoute("login");
+        }
        $user->addEvento($event);
        $em->flush();
        
@@ -112,4 +135,18 @@ class EventController extends Controller
         
         return $this->redirectToRoute("listEvent");
     }
+    
+    /**
+     * @Route("/event/delete/user/{id}", name="deleteUserEvent")
+    */ 
+    public function deleteUserEventAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $eventRepo = $em->getRepository("AppBundle:Evento");
+        $event = $eventRepo->find($id);
+        $user = $this->getUser();
+        $user->removeEvento($event);
+        $user->flush();
+        return $this->redirectToRoute("listEvent");
+    }
+    
 }

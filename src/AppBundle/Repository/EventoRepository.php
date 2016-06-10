@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class EventoRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+        Función que se encarga de saber los eventos en los que no esta activo
+        un usuario de la aplicación
+    */
+    public function findByNotInUser($id)
+    {   
+        $em = $this->getEntityManager();
+        $query = $em->createQuery("select c from AppBundle:Evento c where c.id not in (
+            select l from AppBundle:Usuario u join u.eventos l where u.id = :idUsuario)"
+            )->setParameter("idUsuario",$id);
+            
+        return $query->getResult();
+    }
 }
