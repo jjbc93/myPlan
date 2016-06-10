@@ -76,7 +76,7 @@ class EventController extends Controller
                 $status = "No se ha podido crear el evento revise los campos";
             }
             $this->session->getFlashbag()->add("status",$status);
-            return $this->redirectToRoute("eventList");
+            return $this->redirectToRoute("listEvent");
         }
 
 
@@ -85,7 +85,21 @@ class EventController extends Controller
             "form" => $form->createView()
         ));
     }
-
+    
+     /**
+     * @Route("/event/add/user/{id}", name="addUserEvent")
+    */ 
+    public function addUserEventAction($id){
+       $em = $this->getDoctrine()->getManager();
+       $eventRepo = $em->getRepository("AppBundle:Evento");
+       $event = $eventRepo->find($id);
+       $user = $this->getUser();
+       $user->addEvento($event);
+       $em->flush();
+       
+       return $this->redirectToRoute("listEvent");
+    }
+    
     /**
      * @Route("/event/delete/{id}", name="deleteEvent")
     */ 
@@ -96,6 +110,6 @@ class EventController extends Controller
         $em->remove($event);
         $em->flush();
         
-        return $this->redirectToRoute("eventList");
+        return $this->redirectToRoute("listEvent");
     }
 }

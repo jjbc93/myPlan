@@ -3,46 +3,25 @@
     <div class="container">
 
             <hr class="featurette-divider">
-
-            <!-- First Featurette -->
-            <div class="featurette" id="about">
-                    <img class="featurette-image img-circle img-responsive pull-right" src="{{asset('uploads/'~events[13].imagen)}}">
-                    <h2 class="featurette-heading">This First Heading
-                            <span class="text-muted">Will Catch Your Eye</span>
+            
+            {%for event in events%}
+                <div class="featurette" id="about">
+                    <img class="featurette-image img-circle img-responsive pull-right"  src="{{asset('uploads/'~event.imagen)}}">
+                    <h2 class="featurette-heading">
+                            <span class="text-muted">{{event.nombre}}</span>
                     </h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <p class="lead">{{event.descripcion}}</p>
+                    <p class="lead">{{event.lugar}}</p>
+                    <p class="lead">{{event.fecha}}</p>
+                    <p class="lead">{{event.horario}}</p>
+                    
+                    
+                    <p></p>
+                    <td><a class="btn btn-danger" href="{{path('deleteEvent',{'id':event.id})}}">Eliminar</a> <a class="btn btn-info" href="{{path('addUserEvent',{'id':event.id})}}">info</a></td>
                     
             </div>
-
-            {%for event in events%}
-                <p class="pull-left" style="margin-right:20px;"><img width="200" src="{{ asset("uploads/"~event.imagen)}}"/></p>
-                <img src="{{ asset('apple-touch-icon.png') }}" alt="Symfony!" />
+               <hr class="featurette-divider">
             {%endfor%}
-
-            <hr class="featurette-divider">
-
-            <!-- Second Featurette -->
-            <div class="featurette" id="services">
-                    <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-                    <h2 class="featurette-heading">The Second Heading
-                            <span class="text-muted">Is Pretty Cool Too.</span>
-                    </h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <!-- Third Featurette -->
-            <div class="featurette" id="contact">
-                    <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-                    <h2 class="featurette-heading">The Third Heading
-                            <span class="text-muted">Will Seal the Deal.</span>
-                    </h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-
-            <hr class="featurette-divider">
-
             <!-- Footer -->
 
     </div>
