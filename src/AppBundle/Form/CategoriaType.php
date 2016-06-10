@@ -19,7 +19,7 @@ class CategoriaType extends AbstractType
     {
         $builder
             ->add('descripcion',TextType::class, array("label"=>"Nick","required"=>"required","attr" => array("class" =>"form-nick form-control",)))
-             ->add('enviar',SubmitType::class, array("attr" =>array(
+             ->add('Crear',SubmitType::class, array("attr" =>array(
             "class" =>"form-submit btn btn-success miSubmit")))
         ;
     }

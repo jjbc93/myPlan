@@ -5,7 +5,7 @@
        {%for message in app.session.flashbag().get('status')%}
        <div class="alert alert-success">{{message}}</div>
        
-       {% endfor %}
+       {%endfor%}
        <table class="table table-bordered">
         {% for event in events %}
              <tr>

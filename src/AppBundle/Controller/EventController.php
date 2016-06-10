@@ -20,7 +20,7 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/event/list", name="eventList")
+     * @Route("/event/list", name="listEvent")
     */ 
     public function indexEventAction()
     {   
@@ -28,7 +28,7 @@ class EventController extends Controller
         $eventRepo = $em->getRepository("AppBundle:Evento");
         $events = $eventRepo->findAll();
 
-        return $this->render('event/eventList.html.twig',array(
+        return $this->render('event/eventDefault.html.twig',array(
             "events" =>$events
         ));
     }
@@ -46,6 +46,19 @@ class EventController extends Controller
             if($form->isValid()){
                 $em = $this->getDoctrine()->getManager();
                 $eventRepo = $em->getRepository("AppBundle:Evento");
+                //Subir fichero
+                $file=$form["imagen"]->getData();
+				
+				if(!empty($file) && $file!=null){
+					$ext=$file->guessExtension();
+					$file_name=time().".".$ext;
+					$file->move("uploads",$file_name);
+
+					$evento->setImagen($file_name);
+				}else{
+					$entry->setImagen(null);
+				}
+                
                 /*foreach($evento->getCategorias() as $categoria){
                     var_dump($categoria);
                     $evento->addCategoria($categoria);

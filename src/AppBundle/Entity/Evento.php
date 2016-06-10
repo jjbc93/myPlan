@@ -55,6 +55,13 @@ class Evento
      * @ORM\Column(name="patrocinadores", type="string", length=255)
      */
     private $patrocinadores;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagen", type="string", length=255)
+     */
+    private $imagen;
 
     /**
      * @var string
@@ -332,5 +339,29 @@ class Evento
     public function getUsuarios()
     {
         return $this->usuarios;
+    }
+
+    /**
+     * Set imagen
+     *
+     * @param string $imagen
+     *
+     * @return Evento
+     */
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    /**
+     * Get imagen
+     *
+     * @return string
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
     }
 }

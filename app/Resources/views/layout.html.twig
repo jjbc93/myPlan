@@ -2,15 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="{{ asset('Resources/public/css/one-page-wonder.css') }}" rel="stylesheet" />
         <title> {% block title %} myPlan {% endblock %}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+         rel="stylesheet"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <style>
-            .miSubmit{
-                margin-top: 3%;
-            }
-        </style>
+       
     </head>
     <body>
         <header>
@@ -30,7 +29,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{{path('eventList')}}">Eventos <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="{{path('listEvent')}}">Eventos <span class="sr-only">(current)</span></a></li>
                             <li><a href="#">Link</a></li>
                             <!--<li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -54,36 +53,36 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#">
                                 {% if app.user !=null %}
-                                Hola {{app.user.nombre}} {{app.user.apellidos}}
-                                {%endif%}
-                                </a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <!--<li><a href="#">Login</a></li>-->
-                                    <!--<li role="separator" class="divider"></li>-->
-                                    <li><a href="#">Ayuda</a></li>
-                                    {% if app.user !=null%}
-                                    <li><a href="{{path('addEvent')}}">Eventos</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{path('logout')}}">Salir</a></li>
-                                    {%else%}
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{path('login')}}">Login</a></li>
-                                    {% endif %}
-                                    <!--<li role="separator" class="divider"></li>-->
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
-        </header>
-        <section id="content">
-            {% block content %} Content default {% endblock %}
-        </section>
-        <footer>
-            <hr/> Aplicacion myPlan desarrollada por Juanjo Bernabe Casas &copy;
-        </footer>
-    </body>
-</html>
+                                    Hola {{app.user.nombre}} {{app.user.apellidos}}
+                                    {%endif%}
+                                    </a></li>
+                                <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                                <!--<li><a href="#">Login</a></li>-->
+                                                <!--<li role="separator" class="divider"></li>-->
+                                                <li><a href="#">Ayuda</a></li>
+                                                {% if app.user !=null%}
+                                                    <li><a href="{{path('addEvent')}}">Eventos</a></li>
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a href="{{path('logout')}}">Salir</a></li>
+                                                {%else%}
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a href="{{path('login')}}">Login</a></li>
+                                                {% endif %}
+                                                <!--<li role="separator" class="divider"></li>-->
+                                        </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </header>
+            <section id="content">
+                    {% block content %} Content default {% endblock %}
+            </section>
+            <footer>
+                    <hr/> Aplicacion myPlan desarrollada por Juanjo Bernabe Casas &copy;
+            </footer>
+        </body>
+    </html>

@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 class EventoType extends AbstractType
 {
     /**
@@ -34,6 +35,12 @@ class EventoType extends AbstractType
                 'expanded' => true,
 				"label" => "Categorias",
 				"attr" =>array("class" => "form-control")))
+            ->add('imagen', FileType::class,array(
+				"label" => "Imagen:",
+				"attr" =>array("class" => "form-control"),
+				"data_class" => null,
+				"required" => false
+			))
             ->add('patrocinadores',TextType::class,array("label"=>"Patrocinadores","required"=>"required"
              ,"attr"=>array("class"=>"form-control")))
             ->add('lugar',TextType::class,array("label"=>"Lugar","required"=>"required","attr"=>
