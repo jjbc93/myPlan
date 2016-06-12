@@ -1,32 +1,49 @@
 {% extends 'layout.html.twig' %}
-    {% block content %}
-       <div class="col-lg-6">
-       <h2>Listado de eventos</h2>
-       {%for message in app.session.flashbag().get('status')%}
-       <div class="alert alert-success">{{message}}</div>
-       
-       {%endfor%}
-       <table class="table table-bordered">
-        {% for event in events %}
-             <tr>
-               <td>{{event.nombre}}</td>
-               <td>{{event.descripcion}}</td>
-               <td>{{event.horario}}</td>
-               <td>{{event.fecha}}</td>
-               <td>{{event.patrocinadores}}</td>
-               <td>{{event.lugar}}</td>
-               <td>{{event.direccion}}</td>
-               <td>              
-              {%for ct in event.categorias%}
-               {{ct.descripcion}}
-                   <br/>
+{% block content %}
+    <div class="col-lg-6">
+            <h2>Listado de eventos</h2>
+            {%for message in app.session.flashbag().get('status')%}
+            <div class="alert alert-success">{{message}}</div>
+
             {%endfor%}
-              </td>
-               <td><a class="btn btn-danger" href="{{path('deleteUserEvent',{'id':event.id})}}">Eliminar</a></td>
-           </tr>
-           {%endfor%}
-        </table>
-       </div>
-       <div class="clearfix"></div>
-    
-{%endblock%}
+            <table class="table">
+                    <thead class="thead-inverse">
+                            <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Horario</th>
+                                    <th>Fecha</th>
+                                    <th>Patrocinadores</th>
+                                    <th>Categorias</th>
+                                    <th>Lugar</th>
+                                    <th>Direccion</th>
+                                    <th>Opción</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                            {%for event in events%}
+                            <tr>    <th scope="row">{{event.id}}</th>
+                                    <td>{{event.nombre}}</td>
+                                    <td>{{event.descripcion}}</td>
+                                    <td>{{event.horario}}</td>
+                                    <td>{{event.fecha}}</td>
+                                    <td>{{event.patrocinadores}}</td>
+                                    <td>              
+                                            {%for ct in event.categorias%}
+                                            {{ct.descripcion}}
+                                            <br/>
+                                            {%endfor%}
+                                    </td>
+                                    <td>{{event.lugar}}</td>
+                                    <td>{{event.direccion}}</td>
+                                    <td><a class="btn btn-danger" href="{{path('deleteUserEvent',{'id':event.id})}}">Cancelar</a></td>
+
+                            </tr>
+                            {%endfor%}
+                    </tbody>
+            </table>
+    </div>
+    <div class="clearfix"></div>
+
+    {%endblock%}
