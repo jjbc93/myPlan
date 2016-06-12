@@ -19,9 +19,9 @@ class EventController extends Controller
         $this->session = new Session();
     }
 
-    /**
-     * @Route("/event/list", name="listEvent")
-    */ 
+     /**
+     * @Route("/", name="index")
+     */
     public function indexEventAction()
     {   
         $em = $this->getDoctrine()->getManager();
@@ -74,7 +74,7 @@ class EventController extends Controller
 
 					$evento->setImagen($file_name);
 				}else{
-					$entry->setImagen(null);
+					$evento->setImagen(null);
 				}
                 
                 /*foreach($evento->getCategorias() as $categoria){
@@ -94,7 +94,7 @@ class EventController extends Controller
                 $status = "No se ha podido crear el evento revise los campos";
             }
             $this->session->getFlashbag()->add("status",$status);
-            return $this->redirectToRoute("listEvent");
+            return $this->redirectToRoute("index");
         }
 
 
@@ -120,7 +120,7 @@ class EventController extends Controller
        $user->addEvento($event);
        $em->flush();
        
-       return $this->redirectToRoute("listEvent");
+       return $this->redirectToRoute("index");
     }
     
     /**
@@ -133,7 +133,58 @@ class EventController extends Controller
         $em->remove($event);
         $em->flush();
         
-        return $this->redirectToRoute("listEvent");
+        return $this->redirectToRoute("index");
+    }
+    
+    /**
+     * @Route("/event/edit/{id}", name="editEvent")
+    */ 
+    public function editEventAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $eventRepo = $em->getRepository("AppBundle:Evento");
+        $event = $eventRepo->find($id);
+        $form = $this->createForm(EventoType::class,$event);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            if($form->isValid()){
+                //Subir fichero
+                $file=$form["imagen"]->getData();
+				
+				if(!empty($file) && $file!=null){
+					$ext=$file->guessExtension();
+					$file_name=time().".".$ext;
+					$file->move("uploads",$file_name);
+
+					$event->setImagen($file_name);
+				}else{
+					$event->getImagen();
+				}
+                
+                /*foreach($evento->getCategorias() as $categoria){
+                    var_dump($categoria);
+                    $evento->addCategoria($categoria);
+                }*/
+                $em->persist($event);
+                $flush = $em->flush();
+                if($flush==null){
+                    $status = "El evento ha sido editado";
+                }else{
+                    $status = "No se ha podido editar el evento";
+                }
+
+                $status = "El evento ha sido editado";
+            }else{
+                $status = "No se ha podido editar el evento";
+            }
+            $this->session->getFlashbag()->add("status",$status);
+            return $this->redirectToRoute("index");
+        }
+
+
+
+        return $this->render('event/eventAdd.html.twig',array(
+            "form" => $form->createView()
+        ));
     }
     
     /**
@@ -145,8 +196,8 @@ class EventController extends Controller
         $event = $eventRepo->find($id);
         $user = $this->getUser();
         $user->removeEvento($event);
-        $user->flush();
-        return $this->redirectToRoute("listEvent");
+        $em->flush();
+        return $this->redirectToRoute("index");
     }
     
 }

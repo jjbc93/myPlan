@@ -26,7 +26,7 @@ class EventoType extends AbstractType
             ->add('descripcion',TextType::class,array("label"=>"Descripcion","required"=>"required","attr"=>array("class"=>"form-control",)))
             ->add('horario',TextType::class,array("label"=>"horario","required"=>"required","attr"=>
              array("class"=>"form-control",)))
-            ->add('fecha',TextType::class,array("label"=>"Nombre","required"=>"required","attr"=>
+            ->add('fecha',TextType::class,array("label"=>"fecha","required"=>"required","attr"=>
              array("class"=>"form-control",)))
             ->add('categorias', EntityType::class,array(
 				"class" => "AppBundle:Categoria",

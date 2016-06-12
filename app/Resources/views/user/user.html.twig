@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    {% if app.user !=null%}
+    <!--{% if app.user !=null%}
         {{dump(app.user.nombre)}}
-    {% endif%}
+    {% endif%}-->
     
     {% if is_granted('ROLE_USER') %}
         <strong>
@@ -14,7 +14,7 @@
     
     {% if is_granted('ROLE_ADMIN') %}
         <strong>
-            Estas logueado como SuperUsuario
+            Estas logueado como usuario ADMINISTRADOR TODOPODEROSO
         </strong>
     {% endif %}
     
@@ -35,7 +35,7 @@
    <h2>Nuevos Usuarios</h2>
    <hr/>
    {%for message in app.session.flashbag().get('status')%}
-       <div class="alert alert-info">{{message}}</div>
+       <div class="alert alert-success">{{message}}</div>
    {%endfor%}
     {{form_start(form,{'action':'','method':'POST'})}}
     {{form_end(form)}}

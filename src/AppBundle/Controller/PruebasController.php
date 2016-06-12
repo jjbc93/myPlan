@@ -8,20 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PruebasController extends Controller
 {
-    /**
-     * @Route("/mostrar", name="mostrar")
-     */
-    public function mostrarDatosAction()
-    {/*
-        $em = $this->getDoctrine()->getManager();
-        $eventUserRepo = $em->getRepository("AppBundle:EventUsuario");
-        $eventUsers = $eventUserRepo->findAll();
-        foreach($eventUsers as $eventUser){
-            echo $eventUser->getIdEvento()->getNombre()."<br/>";
-            echo $eventUser->getIdUsuario()->getNombre()."<br/> <hr/>";
-        }*/
-        return $this->render('default/login.html.twig');
-    }
+    
     
     
 }

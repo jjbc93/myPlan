@@ -26,7 +26,7 @@ security:
                 check_path: login_check
             logout:
                 path: /logout
-                target: /mostrar
+                target: /
             # activate different ways to authenticate
 
             # http_basic: ~

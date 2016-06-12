@@ -1,11 +1,13 @@
-{% extends 'layout.html.twig' %}
+{% extends 'layoutMapa.html.twig' %}
 {% block content %}
     <div class="container">
 
             <hr class="featurette-divider">
-            
+            {%for message in app.session.flashbag().get('status')%}
+            <div class="alert alert-success">{{message}}</div>
+            {%endfor%}
             {%for event in events%}
-                <div class="featurette" id="about">
+            <div class="featurette" id="about">
                     <img class="featurette-image img-circle img-responsive pull-right"  src="{{asset('uploads/'~event.imagen)}}">
                     <h2 class="featurette-heading">
                             <span class="text-muted">{{event.nombre}}</span>
@@ -14,13 +16,17 @@
                     <p class="lead">{{event.lugar}}</p>
                     <p class="lead">{{event.fecha}}</p>
                     <p class="lead">{{event.horario}}</p>
-                    
-                    
+
+
                     <p></p>
-                    <td><a class="btn btn-danger" href="{{path('deleteEvent',{'id':event.id})}}">Eliminar</a> <a class="btn btn-info" href="{{path('addUserEvent',{'id':event.id})}}">info</a></td>
-                    
+                    <td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="btn btn-danger" href="{{path('deleteEvent',{'id':event.id})}}">Eliminar</a> <a class="btn btn-warning" href="{{path('editEvent',{'id':event.id})}}">Editar</a>
+                            {% endif %}
+                            <a class="btn btn-success"                         href="{{path('addUserEvent',{'id':event.id})}}">Suscribirse</a></td>
+
             </div>
-               <hr class="featurette-divider">
+            <hr class="featurette-divider">
             {%endfor%}
             <!-- Footer -->
 

@@ -1,0 +1,70 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+  <script>
+      require([
+      "esri/views/MapView",
+      "esri/WebMap",
+      "dojo/on",
+      "dojo/domReady!"
+    ], function(
+      MapView, WebMap,
+      on
+    ) {
+
+      var webmapids = [
+        "a90c9d3841c6404e92c1972c96959cb5",
+        "a90c9d3841c6404e92c1972c96959cb5",
+        "a90c9d3841c6404e92c1972c96959cb5",
+        "a90c9d3841c6404e92c1972c96959cb5"
+      ];
+
+      /************************************************************
+       * Create multiple WebMap instances
+       ************************************************************/
+      var webmaps = webmapids.map(function(webmapid) {
+        return new WebMap({
+          portalItem: {
+            id: webmapid
+          }
+        });
+      });
+
+      /************************************************************
+       * Initialize the View with the first WebMap
+       ************************************************************/
+      var view = new MapView({
+        map: webmaps[0],
+        container: "viewDiv"
+      });
+      on(document.querySelector(".btns"), ".btn-switch:click", function(e) {
+        /************************************************************
+         * On a button click, change the map of the View
+         ************************************************************/
+        var id = e.target.getAttribute("data-id");
+        if (id) {
+          var webmap = webmaps[id];
+          view.map = webmap;
+          var nodes = document.querySelectorAll(".btn-switch");
+          for (var idx = 0; idx < nodes.length; idx++) {
+            var node = nodes[idx];
+            var mapIndex = node.getAttribute("data-id");
+            if (mapIndex === id) {
+              node.classList.add("active-map");
+            } else {
+              node.classList.remove("active-map");
+            }
+          }
+        }
+      });
+    });
+  </script>
+  <section class="header">
+    <div class="btns">
+      <div class="btn-switch active-map" data-id="0">Map 1</div>
+      <div class="btn-switch" data-id="1">Map 2</div>
+      <div class="btn-switch" data-id="2">Map 3</div>
+      <div class="btn-switch" data-id="3">Map 4</div>
+    </div>
+  </section>
+  <div id="viewDiv"></div>
+{%endblock%}
