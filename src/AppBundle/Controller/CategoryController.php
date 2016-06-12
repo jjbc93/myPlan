@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
             }
             $this->session->getFlashBag()->add("status",$status);
-            return $this->redirectToRoute("mostrar");
+            return $this->redirectToRoute("index");
         }
         return $this->render('category/categoryAdd.html.twig',array(
             "form" => $form->createView()

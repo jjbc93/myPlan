@@ -130,9 +130,9 @@
                                         <ul class="dropdown-menu">
                                                 <!--<li><a href="#">Login</a></li>-->
                                                 <!--<li role="separator" class="divider"></li>-->
-                                                <li><a href="#">Ayuda</a></li>
                                                 {% if app.user !=null%}
                                                     <li><a href="{{path('addEvent')}}">Eventos</a></li>
+                                                    <li><a href="{{path('addCategory')}}">Categorias</a></li>
                                                     <li role="separator" class="divider"></li>
                                                     <li><a href="{{path('logout')}}">Salir</a></li>
                                                 {%else%}
